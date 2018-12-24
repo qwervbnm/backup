@@ -1,49 +1,49 @@
 ! function(e) {
     var t = {};
-    function r(s) {
-        if (t[s]) return t[s].exports;
-        var n = t[s] = {
-            i: s,
+    function s(r) {
+        if (t[r]) return t[r].exports;
+        var n = t[r] = {
+            i: r,
             l: !1,
             exports: {}
         };
-        return e[s].call(n.exports, n, n.exports, r), n.l = !0, n.exports
+        return e[r].call(n.exports, n, n.exports, s), n.l = !0, n.exports
     }
-    r.m = e, r.c = t, r.d = function(e, t, s) {
-        r.o(e, t) || Object.defineProperty(e, t, {
+    s.m = e, s.c = t, s.d = function(e, t, r) {
+        s.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
-            get: s
+            get: r
         })
-    }, r.r = function(e) {
+    }, s.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, r.t = function(e, t) {
-        if (1 & t && (e = r(e)), 8 & t) return e;
+    }, s.t = function(e, t) {
+        if (1 & t && (e = s(e)), 8 & t) return e;
         if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-        var s = Object.create(null);
-        if (r.r(s), Object.defineProperty(s, "default", {
+        var r = Object.create(null);
+        if (s.r(r), Object.defineProperty(r, "default", {
                 enumerable: !0,
                 value: e
             }), 2 & t && "string" != typeof e)
-            for (var n in e) r.d(s, n, function(t) {
+            for (var n in e) s.d(r, n, function(t) {
                 return e[t]
             }.bind(null, n));
-        return s
-    }, r.n = function(e) {
+        return r
+    }, s.n = function(e) {
         var t = e && e.__esModule ? function() {
             return e.default
         } : function() {
             return e
         };
-        return r.d(t, "a", t), t
-    }, r.o = function(e, t) {
+        return s.d(t, "a", t), t
+    }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 37)
+    }, s.p = "", s(s.s = 37)
 }({
-    10: function(e, t) {
+    11: function(e, t) {
         e.exports = function(e) {
             return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children || (e.children = []), Object.defineProperty(e, "loaded", {
                 enumerable: !0,
@@ -59,10 +59,10 @@
         }
     },
     13: function(e, t) {
-        function r() {
+        function s() {
             this._events = this._events || {}, this._maxListeners = this._maxListeners || void 0
         }
-        function s(e) {
+        function r(e) {
             return "function" == typeof e
         }
         function n(e) {
@@ -71,90 +71,90 @@
         function i(e) {
             return void 0 === e
         }
-        e.exports = r, r.EventEmitter = r, r.prototype._events = void 0, r.prototype._maxListeners = void 0, r.defaultMaxListeners = 10, r.prototype.setMaxListeners = function(e) {
+        e.exports = s, s.EventEmitter = s, s.prototype._events = void 0, s.prototype._maxListeners = void 0, s.defaultMaxListeners = 10, s.prototype.setMaxListeners = function(e) {
             if (! function(e) {
                     return "number" == typeof e
                 }(e) || e < 0 || isNaN(e)) throw TypeError("n must be a positive number");
             return this._maxListeners = e, this
-        }, r.prototype.emit = function(e) {
-            var t, r, o, a, h, c;
+        }, s.prototype.emit = function(e) {
+            var t, s, o, a, h, c;
             if (this._events || (this._events = {}), "error" === e && (!this._events.error || n(this._events.error) && !this._events.error.length)) {
                 if ((t = arguments[1]) instanceof Error) throw t;
-                var p = new Error('Uncaught, unspecified "error" event. (' + t + ")");
-                throw p.context = t, p
+                var u = new Error('Uncaught, unspecified "error" event. (' + t + ")");
+                throw u.context = t, u
             }
-            if (i(r = this._events[e])) return !1;
-            if (s(r)) switch (arguments.length) {
+            if (i(s = this._events[e])) return !1;
+            if (r(s)) switch (arguments.length) {
                 case 1:
-                    r.call(this);
+                    s.call(this);
                     break;
                 case 2:
-                    r.call(this, arguments[1]);
+                    s.call(this, arguments[1]);
                     break;
                 case 3:
-                    r.call(this, arguments[1], arguments[2]);
+                    s.call(this, arguments[1], arguments[2]);
                     break;
                 default:
-                    a = Array.prototype.slice.call(arguments, 1), r.apply(this, a)
-            } else if (n(r))
-                for (a = Array.prototype.slice.call(arguments, 1), o = (c = r.slice()).length, h = 0; h < o; h++) c[h].apply(this, a);
+                    a = Array.prototype.slice.call(arguments, 1), s.apply(this, a)
+            } else if (n(s))
+                for (a = Array.prototype.slice.call(arguments, 1), o = (c = s.slice()).length, h = 0; h < o; h++) c[h].apply(this, a);
             return !0
-        }, r.prototype.addListener = function(e, t) {
+        }, s.prototype.addListener = function(e, t) {
             var o;
-            if (!s(t)) throw TypeError("listener must be a function");
-            return this._events || (this._events = {}), this._events.newListener && this.emit("newListener", e, s(t.listener) ? t.listener : t), this._events[e] ? n(this._events[e]) ? this._events[e].push(t) : this._events[e] = [this._events[e], t] : this._events[e] = t, n(this._events[e]) && !this._events[e].warned && (o = i(this._maxListeners) ? r.defaultMaxListeners : this._maxListeners) && o > 0 && this._events[e].length > o && (this._events[e].warned = !0, console.error("(node) warning: possible EventEmitter memory leak detected. %d listeners added. Use emitter.setMaxListeners() to increase limit.", this._events[e].length), "function" == typeof console.trace && console.trace()), this
-        }, r.prototype.on = r.prototype.addListener, r.prototype.once = function(e, t) {
-            if (!s(t)) throw TypeError("listener must be a function");
-            var r = !1;
+            if (!r(t)) throw TypeError("listener must be a function");
+            return this._events || (this._events = {}), this._events.newListener && this.emit("newListener", e, r(t.listener) ? t.listener : t), this._events[e] ? n(this._events[e]) ? this._events[e].push(t) : this._events[e] = [this._events[e], t] : this._events[e] = t, n(this._events[e]) && !this._events[e].warned && (o = i(this._maxListeners) ? s.defaultMaxListeners : this._maxListeners) && o > 0 && this._events[e].length > o && (this._events[e].warned = !0, console.error("(node) warning: possible EventEmitter memory leak detected. %d listeners added. Use emitter.setMaxListeners() to increase limit.", this._events[e].length), "function" == typeof console.trace && console.trace()), this
+        }, s.prototype.on = s.prototype.addListener, s.prototype.once = function(e, t) {
+            if (!r(t)) throw TypeError("listener must be a function");
+            var s = !1;
             function n() {
-                this.removeListener(e, n), r || (r = !0, t.apply(this, arguments))
+                this.removeListener(e, n), s || (s = !0, t.apply(this, arguments))
             }
             return n.listener = t, this.on(e, n), this
-        }, r.prototype.removeListener = function(e, t) {
-            var r, i, o, a;
-            if (!s(t)) throw TypeError("listener must be a function");
+        }, s.prototype.removeListener = function(e, t) {
+            var s, i, o, a;
+            if (!r(t)) throw TypeError("listener must be a function");
             if (!this._events || !this._events[e]) return this;
-            if (o = (r = this._events[e]).length, i = -1, r === t || s(r.listener) && r.listener === t) delete this._events[e], this._events.removeListener && this.emit("removeListener", e, t);
-            else if (n(r)) {
+            if (o = (s = this._events[e]).length, i = -1, s === t || r(s.listener) && s.listener === t) delete this._events[e], this._events.removeListener && this.emit("removeListener", e, t);
+            else if (n(s)) {
                 for (a = o; a-- > 0;)
-                    if (r[a] === t || r[a].listener && r[a].listener === t) {
+                    if (s[a] === t || s[a].listener && s[a].listener === t) {
                         i = a;
                         break
                     }
                 if (i < 0) return this;
-                1 === r.length ? (r.length = 0, delete this._events[e]) : r.splice(i, 1), this._events.removeListener && this.emit("removeListener", e, t)
+                1 === s.length ? (s.length = 0, delete this._events[e]) : s.splice(i, 1), this._events.removeListener && this.emit("removeListener", e, t)
             }
             return this
-        }, r.prototype.removeAllListeners = function(e) {
-            var t, r;
+        }, s.prototype.removeAllListeners = function(e) {
+            var t, s;
             if (!this._events) return this;
             if (!this._events.removeListener) return 0 === arguments.length ? this._events = {} : this._events[e] && delete this._events[e], this;
             if (0 === arguments.length) {
                 for (t in this._events) "removeListener" !== t && this.removeAllListeners(t);
                 return this.removeAllListeners("removeListener"), this._events = {}, this
             }
-            if (s(r = this._events[e])) this.removeListener(e, r);
-            else if (r)
-                for (; r.length;) this.removeListener(e, r[r.length - 1]);
+            if (r(s = this._events[e])) this.removeListener(e, s);
+            else if (s)
+                for (; s.length;) this.removeListener(e, s[s.length - 1]);
             return delete this._events[e], this
-        }, r.prototype.listeners = function(e) {
-            return this._events && this._events[e] ? s(this._events[e]) ? [this._events[e]] : this._events[e].slice() : []
-        }, r.prototype.listenerCount = function(e) {
+        }, s.prototype.listeners = function(e) {
+            return this._events && this._events[e] ? r(this._events[e]) ? [this._events[e]] : this._events[e].slice() : []
+        }, s.prototype.listenerCount = function(e) {
             if (this._events) {
                 var t = this._events[e];
-                if (s(t)) return 1;
+                if (r(t)) return 1;
                 if (t) return t.length
             }
             return 0
-        }, r.listenerCount = function(e, t) {
+        }, s.listenerCount = function(e, t) {
             return e.listenerCount(t)
         }
     },
-    37: function(e, t, r) {
-        var s = r(38),
-            n = r(41),
-            i = r(42),
-            o = r(43);
+    37: function(e, t, s) {
+        var r = s(38),
+            n = s(41),
+            i = s(42),
+            o = s(43);
         async function a(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -169,10 +169,14 @@
                     data: e
                 }, "*")
             });
-            var r = new s({
+            var s = new i({
                 setting: e
             });
-            r.install(), r.on("got", () => {
+            s.install();
+            var h = new r({
+                setting: e
+            });
+            h.install(), h.on("got", () => {
                 !async function() {
                     if (!document.title_src)
                         for (document.title_src = document.title, document.title = "[新箱子验证] " + document.title;;) {
@@ -185,22 +189,22 @@
                 }(), window.postMessage({
                     source: "treasure_got"
                 }, "*")
-            }), r.on("got_res", e => {
+            }), h.on("got_res", e => {
                 window.postMessage({
                     source: "treasure_got_res",
                     data: e
                 }, "*")
-            }), r.on("miss", () => {
-                e.ghoulEnabled && e.autoClose && r.noTs && window.close()
-            }), r.on("barrage", e => {}), r.on("dy_login", e => {
+            }), h.on("miss", () => {
+                e.ghoulEnabled && e.autoClose && h.noTs && window.close()
+            }), h.on("barrage", e => {
+                s.barrageHandler(e)
+            }), h.on("dy_login", e => {
                 window.postMessage({
                     source: "dy_login",
                     data: e
                 }, "*")
-            }), new i({
-                setting: e
-            }).install(), window.addEventListener("message", t => {
-                t.source === window && t.data && "sync" === t.data.source && e.autoClose && r.noTs && window.close()
+            }), window.addEventListener("message", t => {
+                t.source === window && t.data && "sync" === t.data.source && e.autoClose && h.noTs && window.close()
             })
         }
         window.postMessage({
@@ -209,14 +213,14 @@
             e.source === window && e.data && "setting" === e.data.source && h(e.data.data)
         })
     },
-    38: function(e, t, r) {
+    38: function(e, t, s) {
         var {
-            EventEmitter: s
-        } = r(13), n = r(39), i = r(40);
+            EventEmitter: r
+        } = s(13), n = s(39), i = s(40);
         async function o(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
-        e.exports = class extends s {
+        e.exports = class extends r {
             constructor(e) {
                 var t = e.setting;
                 super(), this.setting = t, this.state = "IDLE", this.pendingBox = new n((e, t) => e.surplusTime < t.surplusTime), this.noTs = !0, this.muteService = null
@@ -226,8 +230,8 @@
                     this.noTs = !1, this.state = "WAITING";
                     var {
                         delayRange: t
-                    } = this.setting, r = Math.max(t[1] - t[0], 0) * Math.random() + t[0], s = this.pendingBox.poll(), n = this.setting.rocketOnly ? 102 : 0, i = s.treasureType >= n ? Math.max(1e3 * s.surplusTime - Date.now() + (this.setting.timeDelta || 0) + r + 5, 0) : 1;
-                    setTimeout(() => this.handleTimeupBox(s), i)
+                    } = this.setting, s = Math.max(t[1] - t[0], 0) * Math.random() + t[0], r = this.pendingBox.poll(), n = this.setting.rocketOnly ? 102 : 0, i = r.treasureType >= n ? Math.max(1e3 * r.surplusTime - Date.now() - (this.setting.timeDelta || 0) + s + 5, 0) : 1;
+                    setTimeout(() => this.handleTimeupBox(r), i)
                 }
                 this.pendingBox.isEmpty() && "IDLE" === this.state && (this.noTs = !0)
             }
@@ -249,11 +253,11 @@
                         var t = document.getElementsByClassName("geetest_radar_tip");
                         t && t.length > 0 && (t[0].onmouseenter && t[0].onmouseenter(), t[0].click && t[0].click(), e = "GEE")
                     } else if ("GEE" === e) {
-                        var r = document.getElementsByClassName("geetest_popup_box");
-                        r && r.length > 0 && (r[0].style.width = "347px", e = "WAIT")
-                    } else if ("WAIT" === e) {
                         var s = document.getElementsByClassName("geetest_popup_box");
-                        if (!s || s.length <= 0) break
+                        s && s.length > 0 && (s[0].style.width = "347px", e = "WAIT")
+                    } else if ("WAIT" === e) {
+                        var r = document.getElementsByClassName("geetest_popup_box");
+                        if (!r || r.length <= 0) break
                     }
                     await o(200)
                 }
@@ -266,8 +270,8 @@
                     this.setting.blockEnterBarrage && (e = e.filter(e => "userEnter-barrage" !== e.barrageName)), e.forEach(e => {
                         var {
                             senderId: t,
-                            senderNick: r,
-                            userLevel: s,
+                            senderNick: s,
+                            userLevel: r,
                             hasCard: n,
                             fansMedal: i,
                             barrageContent: o,
@@ -275,8 +279,8 @@
                         } = e;
                         o && this.emit("barrage", {
                             senderId: t,
-                            senderNick: r,
-                            userLevel: s,
+                            senderNick: s,
+                            userLevel: r,
                             hasCard: n,
                             fansMedal: i,
                             barrageContent: o,
@@ -301,56 +305,56 @@
                     name: "1c14",
                     path: ["a", "prototype", ["mapping", "dataMap", "showDrawTips", "drawTreasure"]],
                     hooks: {
-                        mapping(t, r, s) {
+                        mapping(t, s, r) {
                             e.dyLogin();
-                            var n = t.call(this, r, s);
+                            var n = t.call(this, s, r);
                             return e.setting.ghoulEnabled && (n.destroyTime -= n.delayTime, n.surplusTime -= n.delayTime, n.delayTime = 1), n
                         },
-                        dataMap(t, r, s) {
-                            var n = t.call(this, r, s);
+                        dataMap(t, s, r) {
+                            var n = t.call(this, s, r);
                             return e.setting.ghoulEnabled && e.handlePendingBoxes(n), n
                         },
-                        showDrawTips(t, r) {
-                            return "WAITING" === e.state && 0 !== parseInt(r.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes(), e.emit("miss")) : "GEE_SHOW" === e.state && 0 !== parseInt(r.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes()) : 0 === parseInt(r.code, 10) && (e.state = "IDLE", e.handlePendingBoxes(), e.emit("got_res", r)), t.call(this, r)
+                        showDrawTips(t, s) {
+                            return "WAITING" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes(), e.emit("miss")) : "GEE_SHOW" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes()) : 0 === parseInt(s.code, 10) && (e.state = "IDLE", e.handlePendingBoxes(), e.emit("got_res", s)), t.call(this, s)
                         },
-                        drawTreasure(t, r, s) {
-                            return "GEE_SHOW" === e.state && "check" === s && (e.state = "GEE_CHECKING"), t.call(this, r, s)
+                        drawTreasure(t, s, r) {
+                            return "GEE_SHOW" === e.state && "check" === r && (e.state = "GEE_CHECKING"), t.call(this, s, r)
                         }
                     }
                 }, {
                     name: "9408",
                     path: ["a", "WrappedComponent", "prototype", ["componentWillReceiveProps"]],
                     hooks: {
-                        componentWillReceiveProps(t, r) {
+                        componentWillReceiveProps(t, s) {
                             var {
-                                treasureDrawResult: s
-                            } = r;
-                            if ("WAITING" === e.state && s && s.data && s.data.geetest) {
+                                treasureDrawResult: r
+                            } = s;
+                            if ("WAITING" === e.state && r && r.data && r.data.geetest) {
                                 e.emit("got");
                                 var {
                                     autoOpenBox: n
                                 } = e.setting;
                                 n && e.showGeeTestPanel(), e.state = "GEE_SHOW"
                             }
-                            return t.call(this, r)
+                            return t.call(this, s)
                         }
                     }
                 }, {
                     name: "94084",
                     path: ["a", "WrappedComponent", "prototype", ["componentWillReceiveProps"]],
                     hooks: {
-                        componentWillReceiveProps(t, r) {
+                        componentWillReceiveProps(t, s) {
                             var {
-                                treasureDrawResult: s
-                            } = r;
-                            if ("WAITING" === e.state && s && s.data && s.data.geetest) {
+                                treasureDrawResult: r
+                            } = s;
+                            if ("WAITING" === e.state && r && r.data && r.data.geetest) {
                                 e.emit("got");
                                 var {
                                     autoOpenBox: n
                                 } = e.setting;
                                 n && e.showGeeTestPanel(), e.state = "GEE_SHOW"
                             }
-                            return t.call(this, r)
+                            return t.call(this, s)
                         }
                     }
                 }, {
@@ -367,8 +371,8 @@
                     hooks: {
                         init(e, t) {
                             try {
-                                var r = document.getElementsByClassName("AnchorLevelTip-tipBarNum")[0];
-                                r.appendChild(document.createTextNode(", ")), r.appendChild(document.createTextNode(t.$ROOM.levelInfo.experience))
+                                var s = document.getElementsByClassName("AnchorLevelTip-tipBarNum")[0];
+                                s.appendChild(document.createTextNode(", ")), s.appendChild(document.createTextNode(t.$ROOM.levelInfo.experience))
                             } catch (e) {
                                 console.log("err:", e)
                             }
@@ -400,88 +404,88 @@
                     name: "7914",
                     path: ["a", "create"],
                     hooks: {
-                        create(t, r) {
-                            var s = t.call(this, r),
-                                n = s.push;
-                            return s.push = ((t, r) => {
-                                t = e.handleBarrages(t, r), n.call(s, t, r)
-                            }), s
+                        create(t, s) {
+                            var r = t.call(this, s),
+                                n = r.push;
+                            return r.push = ((t, s) => {
+                                t = e.handleBarrages(t, s), n.call(r, t, s)
+                            }), r
                         }
                     }
                 }])
             }
         }
     },
-    39: function(e, t, r) {
+    39: function(e, t, s) {
         "use strict";
         (function(e) {
             var t = function(e, t) {
                 return e < t
             };
-            function s(e) {
-                if (!(this instanceof s)) return new s(e);
+            function r(e) {
+                if (!(this instanceof r)) return new r(e);
                 this.array = [], this.size = 0, this.compare = e || t
             }
-            s.prototype.clone = function() {
-                var e = new s(this.compare);
+            r.prototype.clone = function() {
+                var e = new r(this.compare);
                 e.size = this.size;
                 for (var t = 0; t < this.size; t++) e.array.push(this.array[t]);
                 return e
-            }, s.prototype.add = function(e) {
-                var t, r, s = this.size;
-                for (this.array[this.size] = e, this.size += 1; s > 0 && (t = s - 1 >> 1, r = this.array[t], this.compare(e, r));) this.array[s] = r, s = t;
-                this.array[s] = e
-            }, s.prototype.heapify = function(e) {
+            }, r.prototype.add = function(e) {
+                var t, s, r = this.size;
+                for (this.array[this.size] = e, this.size += 1; r > 0 && (t = r - 1 >> 1, s = this.array[t], this.compare(e, s));) this.array[r] = s, r = t;
+                this.array[r] = e
+            }, r.prototype.heapify = function(e) {
                 var t;
                 for (this.array = e, this.size = e.length, t = this.size >> 1; t >= 0; t--) this._percolateDown(t)
-            }, s.prototype._percolateUp = function(e, t) {
-                for (var r, s, n = this.array[e]; e > 0 && (r = e - 1 >> 1, s = this.array[r], t || this.compare(n, s));) this.array[e] = s, e = r;
+            }, r.prototype._percolateUp = function(e, t) {
+                for (var s, r, n = this.array[e]; e > 0 && (s = e - 1 >> 1, r = this.array[s], t || this.compare(n, r));) this.array[e] = r, e = s;
                 this.array[e] = n
-            }, s.prototype._percolateDown = function(e) {
-                for (var t, r, s, n = this.size, i = this.size >>> 1, o = this.array[e]; e < i && (r = (t = 1 + (e << 1)) + 1, s = this.array[t], r < n && this.compare(this.array[r], s) && (t = r, s = this.array[r]), this.compare(s, o));) this.array[e] = s, e = t;
+            }, r.prototype._percolateDown = function(e) {
+                for (var t, s, r, n = this.size, i = this.size >>> 1, o = this.array[e]; e < i && (s = (t = 1 + (e << 1)) + 1, r = this.array[t], s < n && this.compare(this.array[s], r) && (t = s, r = this.array[s]), this.compare(r, o));) this.array[e] = r, e = t;
                 this.array[e] = o
-            }, s.prototype._removeAt = function(e) {
+            }, r.prototype._removeAt = function(e) {
                 if (!(e > this.size - 1 || e < 0)) return this._percolateUp(e, !0), this.poll()
-            }, s.prototype.remove = function(e) {
+            }, r.prototype.remove = function(e) {
                 for (var t = 0; t < this.size; t++)
                     if (!this.compare(this.array[t], e) && !this.compare(e, this.array[t])) return this._removeAt(t), !0;
                 return !1
-            }, s.prototype._batchRemove = function(e, t) {
-                var r = new Array(t || this.size),
-                    s = 0;
+            }, r.prototype._batchRemove = function(e, t) {
+                var s = new Array(t || this.size),
+                    r = 0;
                 if ("function" == typeof e && this.size)
-                    for (var n = 0; n < this.size && s < r.length;) e(this.array[n]) ? (r[s] = this._removeAt(n), s++, n >>= 1) : n++;
-                return r.length = s, r
-            }, s.prototype.removeOne = function(e) {
+                    for (var n = 0; n < this.size && r < s.length;) e(this.array[n]) ? (s[r] = this._removeAt(n), r++, n >>= 1) : n++;
+                return s.length = r, s
+            }, r.prototype.removeOne = function(e) {
                 var t = this._batchRemove(e, 1);
                 return t.length > 0 ? t[0] : void 0
-            }, s.prototype.removeMany = function(e, t) {
+            }, r.prototype.removeMany = function(e, t) {
                 return this._batchRemove(e, t)
-            }, s.prototype.peek = function() {
+            }, r.prototype.peek = function() {
                 if (0 != this.size) return this.array[0]
-            }, s.prototype.poll = function() {
+            }, r.prototype.poll = function() {
                 if (0 != this.size) {
                     var e = this.array[0];
                     return this.size > 1 ? (this.array[0] = this.array[--this.size], this._percolateDown(0)) : this.size -= 1, e
                 }
-            }, s.prototype.replaceTop = function(e) {
+            }, r.prototype.replaceTop = function(e) {
                 if (0 != this.size) {
                     var t = this.array[0];
                     return this.array[0] = e, this._percolateDown(0), t
                 }
-            }, s.prototype.trim = function() {
+            }, r.prototype.trim = function() {
                 this.array = this.array.slice(0, this.size)
-            }, s.prototype.isEmpty = function() {
+            }, r.prototype.isEmpty = function() {
                 return 0 === this.size
-            }, s.prototype.forEach = function(e) {
+            }, r.prototype.forEach = function(e) {
                 if (!this.isEmpty() && "function" == typeof e)
-                    for (var t = 0, r = this.clone(); !r.isEmpty();) e(r.poll(), t++)
-            }, s.prototype.kSmallest = function(e) {
+                    for (var t = 0, s = this.clone(); !s.isEmpty();) e(s.poll(), t++)
+            }, r.prototype.kSmallest = function(e) {
                 if (0 == this.size) return [];
                 var t = this.compare,
-                    r = this.array,
-                    n = new s(function(e, s) {
-                        return t(r[e], r[s])
+                    s = this.array,
+                    n = new r(function(e, r) {
+                        return t(s[e], s[r])
                     });
                 e = Math.min(this.size, e);
                 var i = new Array(e),
@@ -495,85 +499,85 @@
                 }
                 return i
             };
-            r.c[r.s] === e && function() {
-                var e = new s(function(e, t) {
+            s.c[s.s] === e && function() {
+                var e = new r(function(e, t) {
                     return e < t
                 });
                 for (e.add(1), e.add(0), e.add(5), e.add(4), e.add(3); !e.isEmpty();) console.log(e.poll())
-            }(), e.exports = s
-        }).call(this, r(10)(e))
+            }(), e.exports = r
+        }).call(this, s(11)(e))
     },
     40: function(e, t) {
-        async function r(e) {
+        async function s(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
-        function s(e, t) {
+        function r(e, t) {
             var {
-                name: r,
-                path: s,
+                name: s,
+                path: r,
                 hooks: n
             } = t;
-            Object.defineProperty(e, r, {
-                get: () => e[`_${r}`],
+            Object.defineProperty(e, s, {
+                get: () => e[`_${s}`],
                 set: t => {
                     var i = t.exports;
                     Object.defineProperty(t, "exports", {
                         get: () => t._exports,
                         set: e => {
-                            ! function e(t, r, s) {
-                                if (!(r.length <= 0)) {
-                                    var n = r.shift();
+                            ! function e(t, s, r) {
+                                if (!(s.length <= 0)) {
+                                    var n = s.shift();
                                     if ("prototype" === n) {
-                                        n = r.shift();
-                                        var i = r.length,
+                                        n = s.shift();
+                                        var i = s.length,
                                             o = [];
                                         n instanceof Array || (n = [].push(n)), n.forEach(e => o[e] = t.prototype[e]);
                                         var a = {};
                                         n.forEach(n => {
                                             a[n] = {
                                                 get: () => i > 0 ? t.prototype[`_${n}`] : function(...e) {
-                                                    return s[n].call(this, t.prototype[`_${n}`], ...e)
+                                                    return r[n].call(this, t.prototype[`_${n}`], ...e)
                                                 },
                                                 set: i => {
-                                                    e(i, r, s), t.prototype[`_${n}`] = i
+                                                    e(i, s, r), t.prototype[`_${n}`] = i
                                                 }
                                             }
                                         }), Object.defineProperties(t.prototype, a), n.forEach(e => t.prototype[e] = o[e])
                                     } else {
-                                        var h = r.length,
+                                        var h = s.length,
                                             c = t[n];
                                         Object.defineProperty(t, n, {
                                             get: () => h > 0 ? t[`_${n}`] : function(...e) {
-                                                return s[n].call(this, t[`_${n}`], ...e)
+                                                return r[n].call(this, t[`_${n}`], ...e)
                                             },
                                             set: i => {
-                                                e(i, r, s), t[`_${n}`] = i
+                                                e(i, s, r), t[`_${n}`] = i
                                             }
                                         }), c && (t[n] = c)
                                     }
                                 }
-                            }(e, s, n), t._exports = e
+                            }(e, r, n), t._exports = e
                         }
-                    }), t.exports = i, e[`_${r}`] = t
+                    }), t.exports = i, e[`_${s}`] = t
                 }
             })
         }
         e.exports = {
             hook: async function(e) {
                 var t = await async function() {
-                    for (; !window.webpackJsonp;) await r(333);
+                    for (; !window.webpackJsonp;) await s(333);
                     return new Promise(e => {
                         var t = "fakeModule",
-                            r = {
-                                [t]: (t, r, s) => {
-                                    e(s.c)
+                            s = {
+                                [t]: (t, s, r) => {
+                                    e(r.c)
                                 }
                             };
-                        window.webpackJsonp([], r, [t])
+                        window.webpackJsonp([], s, [t])
                     })
                 }();
                 e.forEach(e => {
-                    s(t, e)
+                    r(t, e)
                 })
             }
         }
@@ -582,9 +586,9 @@
         e.exports = (e => {
             var t = e.setting,
                 {
-                    minimalism: r
+                    minimalism: s
                 } = t;
-            r && Object.defineProperty(window, "SHARK_LOADER_CONFIG", {
+            s && Object.defineProperty(window, "SHARK_LOADER_CONFIG", {
                 get: () => window._SHARK_LOADER_CONFIG,
                 set: e => {
                     e = {
@@ -644,58 +648,78 @@
         })
     },
     42: function(e, t) {
-        async function r(e) {
+        async function s(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
         e.exports = class {
             constructor(e) {
                 var t = e.setting;
-                this.setting = t, this.aid = null, this.state = "IDLE"
+                this.setting = t, this.state = "IDLE", this.statistic = {
+                    A: 0,
+                    B: 0,
+                    C: 0
+                }, this.uid = null
             }
             async waitForSocketStream() {
                 for (;;) {
                     if (window.socketProxy && window.socketProxy.socketStream) return;
-                    await r(2e3)
+                    await s(2e3)
                 }
             }
-            getAnswerFromBarrage() {
-                var e = {
-                    A: 0,
-                    B: 0,
-                    C: 0
-                };
-                return document.getElementsByClassName("Barrage-main")[0].innerText.toUpperCase().replace(/[^ABC]/g, "").split("").map(t => ++e[t]), Object.entries(e).sort((e, t) => t[1] - e[1])[0][0].charCodeAt(0) - "A".charCodeAt(0)
+            getUid() {
+                if (!this.uid)
+                    for (var e of document.cookie.split(";"))
+                        if (e.indexOf("acf_uid") >= 0) {
+                            this.uid = e.split("=")[1];
+                            break
+                        }
+                return this.uid
             }
             async answerProblem(e) {
-                var {
-                    room: t,
-                    user: r
-                } = window.socketProxy.info, s = {
-                    type: "compqaq",
-                    acid: "act_comdt",
-                    qid: e,
-                    aid: this.aid,
-                    rid: t.roomId,
-                    uid: r.userName
-                };
-                window.socketProxy.sendMessage(s), setTimeout(() => this.state = "IDLE", 5e3)
+                var t = Object.entries(this.statistic).sort((e, t) => t[1] - e[1])[0][0],
+                    {
+                        room: s
+                    } = window.socketProxy.info,
+                    r = {
+                        type: "compqaq",
+                        acid: "act_comdt",
+                        qid: e,
+                        aid: t.charCodeAt(0) - "A".charCodeAt(0),
+                        rid: s.roomId,
+                        uid: this.getUid()
+                    };
+                window.socketProxy.sendMessage(r), setTimeout(() => this.state = "IDLE", 5e3)
+            }
+            reset() {
+                this.statistic.A = 0, this.statistic.B = 0, this.statistic.C = 0
             }
             async getAnswer(e) {
-                this.state = "WORK", await r(1e3 * parseInt(.8 * e, 10)), this.aid = this.getAnswerFromBarrage()
+                this.state = "WORK", this.reset()
             }
             problemHandler(e) {
                 var {
                     res: t,
-                    qid: r,
-                    cd: s
+                    qid: s,
+                    cd: r
                 } = e;
-                0 === parseInt(t, 10) && r ? this.answerProblem(r) : this.getAnswer(parseInt(s, 10))
+                0 === parseInt(t, 10) && s ? this.answerProblem(s) : this.getAnswer(parseInt(r, 10))
             }
             autoRefresh() {
                 var e = 1e3 * parseInt(this.setting.autoRefreshFreq, 10);
-                e && setTimeout(() => "IDLE" === this.state && window.location.reload(), e)
+                if (e) {
+                    var t = () => {
+                        "IDLE" === this.state ? window.location.reload() : setTimeout(t, this.autoRefresh)
+                    };
+                    setTimeout(t, e)
+                }
+            }
+            barrageHandler(e) {
+                "WORK" === this.state && e.barrageContent.toUpperCase().split("").forEach(e => {
+                    "A" !== e && "B" !== e && "C" !== e || ++this.statistic[e]
+                })
             }
             async install() {
+                window.getUid = this.getUid.bind(this);
                 var {
                     setting: e
                 } = this;
@@ -703,26 +727,26 @@
             }
         }
     },
-    43: function(e, t, r) {
+    43: function(e, t, s) {
         var {
-            EventEmitter: s
-        } = r(13);
-        e.exports = class extends s {
+            EventEmitter: r
+        } = s(13);
+        e.exports = class extends r {
             constructor() {
                 super(), this.src = "", this.pos = []
             }
             onmousedown(e) {
                 var {
                     target: t,
-                    offsetX: r,
-                    offsetY: s
+                    offsetX: s,
+                    offsetY: r
                 } = e, {
                     className: n,
                     currentSrc: i
                 } = t;
                 "geetest_item_img" === n ? (0 === this.pos.length && (this.src = i), this.src !== i && (this.src = i, this.pos = []), this.pos.push({
-                    x: r,
-                    y: s
+                    x: s,
+                    y: r
                 })) : "geetest_commit_tip" === n && this.pos.length > 0 && this.emit("data", {
                     pos: this.pos,
                     src: this.src
