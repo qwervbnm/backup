@@ -1,49 +1,49 @@
 ! function(e) {
     var t = {};
-    function n(o) {
+    function a(o) {
         if (t[o]) return t[o].exports;
-        var r = t[o] = {
+        var n = t[o] = {
             i: o,
             l: !1,
             exports: {}
         };
-        return e[o].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+        return e[o].call(n.exports, n, n.exports, a), n.l = !0, n.exports
     }
-    n.m = e, n.c = t, n.d = function(e, t, o) {
-        n.o(e, t) || Object.defineProperty(e, t, {
+    a.m = e, a.c = t, a.d = function(e, t, o) {
+        a.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
             get: o
         })
-    }, n.r = function(e) {
+    }, a.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, n.t = function(e, t) {
-        if (1 & t && (e = n(e)), 8 & t) return e;
+    }, a.t = function(e, t) {
+        if (1 & t && (e = a(e)), 8 & t) return e;
         if (4 & t && "object" == typeof e && e && e.__esModule) return e;
         var o = Object.create(null);
-        if (n.r(o), Object.defineProperty(o, "default", {
+        if (a.r(o), Object.defineProperty(o, "default", {
                 enumerable: !0,
                 value: e
             }), 2 & t && "string" != typeof e)
-            for (var r in e) n.d(o, r, function(t) {
+            for (var n in e) a.d(o, n, function(t) {
                 return e[t]
-            }.bind(null, r));
+            }.bind(null, n));
         return o
-    }, n.n = function(e) {
+    }, a.n = function(e) {
         var t = e && e.__esModule ? function() {
             return e.default
         } : function() {
             return e
         };
-        return n.d(t, "a", t), t
-    }, n.o = function(e, t) {
+        return a.d(t, "a", t), t
+    }, a.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 27)
+    }, a.p = "", a(a.s = 69)
 }({
-    27: function(e, t) {
+    69: function(e, t) {
         window.addEventListener("message", e => {
                 e.source === window && e.data && "backend_installed" === e.data.source && function() {
                     var e = chrome.runtime.connect({
@@ -52,34 +52,48 @@
                     e.onMessage.addListener(e => {
                         var {
                             type: t,
-                            data: n
+                            data: a
                         } = e;
                         if ("setting" === t) {
                             var {
                                 ghoulEnabled: o,
-                                blockLiveStream: r
-                            } = n;
-                            if (o && r) {
-                                var a = document.getElementById("js-player-video");
-                                a ? a.parentNode.removeChild(a) : window.addEventListener("load", () => {
+                                blockLiveStream: n
+                            } = a;
+                            if (o && n) {
+                                var r = document.getElementById("js-player-video");
+                                r ? r.parentNode.removeChild(r) : window.addEventListener("load", () => {
                                     var e = document.getElementById("js-player-video");
                                     e && e.parentNode.removeChild(e)
                                 })
                             }
                             window.postMessage({
                                 source: "setting",
-                                data: n
+                                data: a
                             }, "*")
-                        } else "sync" === t && window.postMessage({
+                        } else "sync" === t ? window.postMessage({
                             source: "sync"
+                        }, "*") : "tsbox" === t && window.postMessage({
+                            source: "tsbox",
+                            data: a
                         }, "*")
                     }), window.addEventListener("message", t => {
                         t.source === window && t.data && "treasure_got" === t.data.source ? (console.log("got"), e && e.postMessage({
                             type: "got"
-                        })) : t.source === window && t.data && "treasure_got_res" === t.data.source && (console.log("got_res"), e && e.postMessage({
+                        })) : t.source === window && t.data && "treasure_got_res" === t.data.source ? (console.log("got_res"), e && e.postMessage({
                             type: "got_res",
                             data: t.data.data
-                        }))
+                        })) : t.source === window && t.data && "geetest_data" === t.data.source ? (console.log("geetest_data"), e && e.postMessage({
+                            type: "geetest_data",
+                            data: t.data.data
+                        })) : t.source === window && t.data && "dy_login" === t.data.source ? e && e.postMessage({
+                            type: "dy_login",
+                            data: t.data.data
+                        }) : t.source === window && t.data && "pro_tab" === t.data.source ? e && e.postMessage({
+                            type: "pro_tab"
+                        }) : t.source === window && t.data && "fans_medal_list" === t.data.source && e && e.postMessage({
+                            type: "fans_medal_list",
+                            data: t.data.data
+                        })
                     })
                 }()
             }),
