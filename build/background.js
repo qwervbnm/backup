@@ -1,18 +1,18 @@
 ! function(e) {
     var t = {};
-    function n(o) {
-        if (t[o]) return t[o].exports;
-        var r = t[o] = {
-            i: o,
+    function n(r) {
+        if (t[r]) return t[r].exports;
+        var a = t[r] = {
+            i: r,
             l: !1,
             exports: {}
         };
-        return e[o].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+        return e[r].call(a.exports, a, a.exports, n), a.l = !0, a.exports
     }
-    n.m = e, n.c = t, n.d = function(e, t, o) {
+    n.m = e, n.c = t, n.d = function(e, t, r) {
         n.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
-            get: o
+            get: r
         })
     }, n.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
@@ -23,15 +23,15 @@
     }, n.t = function(e, t) {
         if (1 & t && (e = n(e)), 8 & t) return e;
         if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-        var o = Object.create(null);
-        if (n.r(o), Object.defineProperty(o, "default", {
+        var r = Object.create(null);
+        if (n.r(r), Object.defineProperty(r, "default", {
                 enumerable: !0,
                 value: e
             }), 2 & t && "string" != typeof e)
-            for (var r in e) n.d(o, r, function(t) {
+            for (var a in e) n.d(r, a, function(t) {
                 return e[t]
-            }.bind(null, r));
-        return o
+            }.bind(null, a));
+        return r
     }, n.n = function(e) {
         var t = e && e.__esModule ? function() {
             return e.default
@@ -41,15 +41,15 @@
         return n.d(t, "a", t), t
     }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 34)
+    }, n.p = "", n(n.s = 35)
 }({
-    34: function(e, t, n) {
-        var o = n(35),
-            r = n(36);
+    35: function(e, t, n) {
+        var r = n(36),
+            a = n(37);
         window.localStorage.setting = function() {
             if (window.localStorage.setting) {
                 var e = JSON.parse(window.localStorage.setting);
-                return !!(e && e.setting && e.setting.hasOwnProperty("ghoulEnabled") && e.setting.hasOwnProperty("vol") && e.setting.hasOwnProperty("blockLiveStream") && e.setting.hasOwnProperty("delayRange") && e.setting.hasOwnProperty("autoClose") && e.setting.hasOwnProperty("autoDrive") && e.setting.hasOwnProperty("minimalism") && e.setting.hasOwnProperty("autoOpenBox") && e.setting.hasOwnProperty("blockEnterEffect")) && window.localStorage.setting
+                return !!(e && e.setting && e.setting.hasOwnProperty("ghoulEnabled") && e.setting.hasOwnProperty("vol") && e.setting.hasOwnProperty("blockLiveStream") && e.setting.hasOwnProperty("delayRange") && e.setting.hasOwnProperty("autoClose") && e.setting.hasOwnProperty("autoDrive") && e.setting.hasOwnProperty("minimalism") && e.setting.hasOwnProperty("autoOpenBox") && e.setting.hasOwnProperty("blockEnterEffect") && e.setting.hasOwnProperty("autoAnswerEnabled") && e.setting.hasOwnProperty("autoAnswerMode") && e.setting.hasOwnProperty("blockEnterBarrage") && e.setting.hasOwnProperty("previewClassName") && e.setting.hasOwnProperty("rocketOnly")) && window.localStorage.setting
             }
             return !1
         }() || JSON.stringify({
@@ -62,7 +62,12 @@
                 autoDrive: !1,
                 minimalism: !1,
                 autoOpenBox: !0,
-                blockEnterEffect: !1
+                blockEnterEffect: !1,
+                autoAnswerEnabled: !1,
+                autoAnswerMode: "smart",
+                blockEnterBarrage: !1,
+                previewClassName: "answerPreview-43abcd",
+                rocketOnly: !1
             }
         }), window.localStorage.stat = function() {
             if (window.localStorage.stat) {
@@ -80,7 +85,7 @@
                 day: null
             }
         });
-        var a = new o;
+        var o = new r;
         chrome.webRequest.onBeforeRequest.addListener(e => {
             var {
                 setting: t
@@ -106,26 +111,31 @@
             }), e.onMessage.addListener(t => {
                 var {
                     type: n,
-                    data: o
+                    data: r
                 } = t;
                 if ("got" === n) {
                     var {
-                        setting: a
+                        setting: o
                     } = JSON.parse(window.localStorage.setting) || {};
-                    r.playAudio(chrome.extension.getURL("assets/ding.wav"), a.vol / 100)
+                    a.playAudio(chrome.extension.getURL("assets/ding.wav"), o.vol / 100)
                 } else if ("got_res" === n) {
                     var {
                         stat: s
-                    } = JSON.parse(window.localStorage.stat) || {};
-                    ++s.box;
+                    } = JSON.parse(window.localStorage.stat) || {}, i = function() {
+                        var e = new Date;
+                        return `${e.getFullYear()}${e.getMonth()}${e.getDate()}`
+                    }();
+                    s.day !== i && function(e, t) {
+                        e.day = t, e.box = 0, e.zan = 0, e.wen = 0, e.song = 0, e.silver = 0
+                    }(s, i), ++s.box;
                     var {
-                        award_type: i,
-                        silver: l,
-                        prop_count: u,
-                        prop_id: c,
-                        prop_name: d
-                    } = o;
-                    "1" === i ? s.silver += parseInt(l, 10) : "2" === i ? "赞" === d ? s.zan += parseInt(u, 10) : "稳" === d ? s.wen += parseInt(u, 10) : "怂" === d ? s.song += parseInt(u, 10) : console.log("unknown prop_name:", o) : console.log("unknown award_type:", o), window.localStorage.stat = JSON.stringify({
+                        award_type: l,
+                        silver: u,
+                        prop_count: c,
+                        prop_id: d,
+                        prop_name: g
+                    } = r;
+                    "1" === l ? s.silver += parseInt(u, 10) : "2" === l ? "赞" === g ? s.zan += parseInt(c, 10) : "稳" === g ? s.wen += parseInt(c, 10) : "怂" === g ? s.song += parseInt(c, 10) : console.log("unknown prop_name:", r) : console.log("unknown award_type:", r), window.localStorage.stat = JSON.stringify({
                         stat: s
                     }), e.postMessage({
                         type: "sync"
@@ -138,13 +148,13 @@
                     type: t,
                     data: n
                 } = e, {
-                    setting: o
+                    setting: r
                 } = JSON.parse(window.localStorage.setting) || {};
-                "update_rooms" === t && o.autoDrive && a.update(n)
+                "update_rooms" === t && r.autoDrive && o.update(n)
             }))
         })
     },
-    35: function(e, t) {
+    36: function(e, t) {
         async function n(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -159,12 +169,12 @@
                 "IDLE" === t && (this.state = "DRIVING", this.drive(e))
             }
             async drive(e) {
-                for (var t = new Set, o = new Set; e.length > 0;) {
-                    var r = e.shift();
-                    if (!t.has(r.url)) {
-                        for (console.log(o.size); o.size >= 1;) console.log(">=1"), await n(1e3);
-                        o.add(r.url), chrome.tabs.create({
-                            url: r.url,
+                for (var t = new Set, r = new Set; e.length > 0;) {
+                    var a = e.shift();
+                    if (!t.has(a.url)) {
+                        for (console.log(r.size); r.size >= 1;) console.log(">=1"), await n(1e3);
+                        r.add(a.url), chrome.tabs.create({
+                            url: a.url,
                             selected: !1
                         }), await n(333)
                     }
@@ -173,7 +183,7 @@
             }
         }
     },
-    36: function(e, t) {
+    37: function(e, t) {
         e.exports = {
             playAudio: function(e, t) {
                 if (t > 0) {
