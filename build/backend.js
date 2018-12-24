@@ -41,24 +41,9 @@
         return s.d(t, "a", t), t
     }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "", s(s.s = 37)
+    }, s.p = "", s(s.s = 70)
 }({
-    11: function(e, t) {
-        e.exports = function(e) {
-            return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children || (e.children = []), Object.defineProperty(e, "loaded", {
-                enumerable: !0,
-                get: function() {
-                    return e.l
-                }
-            }), Object.defineProperty(e, "id", {
-                enumerable: !0,
-                get: function() {
-                    return e.i
-                }
-            }), e.webpackPolyfill = 1), e
-        }
-    },
-    13: function(e, t) {
+    10: function(e, t) {
         function s() {
             this._events = this._events || {}, this._maxListeners = this._maxListeners || void 0
         }
@@ -150,11 +135,26 @@
             return e.listenerCount(t)
         }
     },
-    37: function(e, t, s) {
-        var r = s(38),
-            n = s(41),
-            i = s(42),
-            o = s(43);
+    19: function(e, t) {
+        e.exports = function(e) {
+            return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children || (e.children = []), Object.defineProperty(e, "loaded", {
+                enumerable: !0,
+                get: function() {
+                    return e.l
+                }
+            }), Object.defineProperty(e, "id", {
+                enumerable: !0,
+                get: function() {
+                    return e.i
+                }
+            }), e.webpackPolyfill = 1), e
+        }
+    },
+    70: function(e, t, s) {
+        var r = s(71),
+            n = s(74),
+            i = s(75),
+            o = s(76);
         async function a(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -203,9 +203,29 @@
                     source: "dy_login",
                     data: e
                 }, "*")
-            }), window.addEventListener("message", t => {
-                t.source === window && t.data && "sync" === t.data.source && e.autoClose && h.noTs && window.close()
-            })
+            }), "pro" === e.ghoulMode && e.ghoulEnabled && "https://www.douyu.com/99999" === document.location.href && window.postMessage({
+                source: "pro_tab"
+            }, "*"), window.addEventListener("message", t => {
+                t.source === window && t.data && "sync" === t.data.source ? "normal" === e.ghoulMode && e.autoClose && h.noTs && window.close() : t.source === window && t.data && "tsbox" === t.data.source && "pro" === e.ghoulMode && e.ghoulEnabled && h.handlePendingBoxes(t.data.data)
+            }), async function() {
+                for (;;) {
+                    try {
+                        if (PlayerAsideApp && PlayerAsideApp.container.registry.store.getState().medalListMsgData) {
+                            var {
+                                medalListMsgData: e
+                            } = PlayerAsideApp.container.registry.store.getState();
+                            if (e.medalList && e.medalList.length > 0) {
+                                window.postMessage({
+                                    source: "fans_medal_list",
+                                    data: e.medalList
+                                }, "*");
+                                break
+                            }
+                        }
+                    } catch (e) {}
+                    await a(1e3)
+                }
+            }()
         }
         window.postMessage({
             source: "backend_installed"
@@ -213,10 +233,10 @@
             e.source === window && e.data && "setting" === e.data.source && h(e.data.data)
         })
     },
-    38: function(e, t, s) {
+    71: function(e, t, s) {
         var {
             EventEmitter: r
-        } = s(13), n = s(39), i = s(40);
+        } = s(10), n = s(72), i = s(73);
         async function o(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -238,7 +258,7 @@
             handleTimeupBox(e) {
                 if ("WAITING" === this.state) {
                     var t = this.setting.rocketOnly ? 102 : 0;
-                    e.treasureType >= t ? (console.log("picking"), PlayerAsideApp.container.registry.store.dispatch({
+                    e.treasureType >= t ? (console.log("picking", e), PlayerAsideApp.container.registry.store.dispatch({
                         type: "DRAW_TREASURE",
                         payload: {
                             data: e,
@@ -299,11 +319,20 @@
                     })
                 } catch (e) {}
             }
+            getUid() {
+                if (!this.uid)
+                    for (var e of document.cookie.split(";"))
+                        if (e.indexOf("acf_uid") >= 0) {
+                            this.uid = e.split("=")[1];
+                            break
+                        }
+                return this.uid
+            }
             install() {
                 var e = this;
                 i.hook([{
                     name: "1c14",
-                    path: ["a", "prototype", ["mapping", "dataMap", "showDrawTips", "drawTreasure"]],
+                    path: ["a", "prototype", ["mapping", "dataMap", "showDrawTips", "drawTreasure", "drawTreasureRequest"]],
                     hooks: {
                         mapping(t, s, r) {
                             e.dyLogin();
@@ -319,6 +348,30 @@
                         },
                         drawTreasure(t, s, r) {
                             return "GEE_SHOW" === e.state && "check" === r && (e.state = "GEE_CHECKING"), t.call(this, s, r)
+                        },
+                        drawTreasureRequest(e, t) {
+                            var s = t.payload || {},
+                                {
+                                    type: r,
+                                    data: n
+                                } = s,
+                                i = this.global.get("douyuDid"),
+                                o = {};
+                            return "init" === r ? (this.config.treasureId = n.treasureId, this.config.roomId = n.roomId, o = {
+                                room_id: n.roomId,
+                                device_id: i,
+                                packerid: n.treasureId || 0,
+                                version: 1
+                            }, this.config.isGeeChecking = !0) : (o = Object.assign({}, {
+                                room_id: this.config.roomId,
+                                device_id: i,
+                                packerid: this.config.treasureId || 0,
+                                version: 1
+                            }, n), this.config.isGeeChecking = !1), window.webpackJsonp([], null, ["e55c"]).httpClient.post(String, "/member/task/redPacketReceive", o, {
+                                headers: {
+                                    "content-type": "application/x-www-form-urlencoded"
+                                }
+                            })
                         }
                     }
                 }, {
@@ -416,7 +469,7 @@
             }
         }
     },
-    39: function(e, t, s) {
+    72: function(e, t, s) {
         "use strict";
         (function(e) {
             var t = function(e, t) {
@@ -505,9 +558,9 @@
                 });
                 for (e.add(1), e.add(0), e.add(5), e.add(4), e.add(3); !e.isEmpty();) console.log(e.poll())
             }(), e.exports = r
-        }).call(this, s(11)(e))
+        }).call(this, s(19)(e))
     },
-    40: function(e, t) {
+    73: function(e, t) {
         async function s(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -582,7 +635,7 @@
             }
         }
     },
-    41: function(e, t) {
+    74: function(e, t) {
         e.exports = (e => {
             var t = e.setting,
                 {
@@ -647,7 +700,7 @@
             })
         })
     },
-    42: function(e, t) {
+    75: function(e, t) {
         async function s(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -727,10 +780,10 @@
             }
         }
     },
-    43: function(e, t, s) {
+    76: function(e, t, s) {
         var {
             EventEmitter: r
-        } = s(13);
+        } = s(10);
         e.exports = class extends r {
             constructor() {
                 super(), this.src = "", this.pos = []
