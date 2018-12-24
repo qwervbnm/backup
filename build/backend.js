@@ -41,23 +41,138 @@
         return r.d(t, "a", t), t
     }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 28)
+    }, r.p = "", r(r.s = 37)
 }({
-    28: function(e, t, r) {
-        var s = r(29),
-            n = r(33),
-            i = r(34);
-        async function o(e) {
+    10: function(e, t) {
+        e.exports = function(e) {
+            return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children || (e.children = []), Object.defineProperty(e, "loaded", {
+                enumerable: !0,
+                get: function() {
+                    return e.l
+                }
+            }), Object.defineProperty(e, "id", {
+                enumerable: !0,
+                get: function() {
+                    return e.i
+                }
+            }), e.webpackPolyfill = 1), e
+        }
+    },
+    13: function(e, t) {
+        function r() {
+            this._events = this._events || {}, this._maxListeners = this._maxListeners || void 0
+        }
+        function s(e) {
+            return "function" == typeof e
+        }
+        function n(e) {
+            return "object" == typeof e && null !== e
+        }
+        function i(e) {
+            return void 0 === e
+        }
+        e.exports = r, r.EventEmitter = r, r.prototype._events = void 0, r.prototype._maxListeners = void 0, r.defaultMaxListeners = 10, r.prototype.setMaxListeners = function(e) {
+            if (! function(e) {
+                    return "number" == typeof e
+                }(e) || e < 0 || isNaN(e)) throw TypeError("n must be a positive number");
+            return this._maxListeners = e, this
+        }, r.prototype.emit = function(e) {
+            var t, r, o, a, h, c;
+            if (this._events || (this._events = {}), "error" === e && (!this._events.error || n(this._events.error) && !this._events.error.length)) {
+                if ((t = arguments[1]) instanceof Error) throw t;
+                var p = new Error('Uncaught, unspecified "error" event. (' + t + ")");
+                throw p.context = t, p
+            }
+            if (i(r = this._events[e])) return !1;
+            if (s(r)) switch (arguments.length) {
+                case 1:
+                    r.call(this);
+                    break;
+                case 2:
+                    r.call(this, arguments[1]);
+                    break;
+                case 3:
+                    r.call(this, arguments[1], arguments[2]);
+                    break;
+                default:
+                    a = Array.prototype.slice.call(arguments, 1), r.apply(this, a)
+            } else if (n(r))
+                for (a = Array.prototype.slice.call(arguments, 1), o = (c = r.slice()).length, h = 0; h < o; h++) c[h].apply(this, a);
+            return !0
+        }, r.prototype.addListener = function(e, t) {
+            var o;
+            if (!s(t)) throw TypeError("listener must be a function");
+            return this._events || (this._events = {}), this._events.newListener && this.emit("newListener", e, s(t.listener) ? t.listener : t), this._events[e] ? n(this._events[e]) ? this._events[e].push(t) : this._events[e] = [this._events[e], t] : this._events[e] = t, n(this._events[e]) && !this._events[e].warned && (o = i(this._maxListeners) ? r.defaultMaxListeners : this._maxListeners) && o > 0 && this._events[e].length > o && (this._events[e].warned = !0, console.error("(node) warning: possible EventEmitter memory leak detected. %d listeners added. Use emitter.setMaxListeners() to increase limit.", this._events[e].length), "function" == typeof console.trace && console.trace()), this
+        }, r.prototype.on = r.prototype.addListener, r.prototype.once = function(e, t) {
+            if (!s(t)) throw TypeError("listener must be a function");
+            var r = !1;
+            function n() {
+                this.removeListener(e, n), r || (r = !0, t.apply(this, arguments))
+            }
+            return n.listener = t, this.on(e, n), this
+        }, r.prototype.removeListener = function(e, t) {
+            var r, i, o, a;
+            if (!s(t)) throw TypeError("listener must be a function");
+            if (!this._events || !this._events[e]) return this;
+            if (o = (r = this._events[e]).length, i = -1, r === t || s(r.listener) && r.listener === t) delete this._events[e], this._events.removeListener && this.emit("removeListener", e, t);
+            else if (n(r)) {
+                for (a = o; a-- > 0;)
+                    if (r[a] === t || r[a].listener && r[a].listener === t) {
+                        i = a;
+                        break
+                    }
+                if (i < 0) return this;
+                1 === r.length ? (r.length = 0, delete this._events[e]) : r.splice(i, 1), this._events.removeListener && this.emit("removeListener", e, t)
+            }
+            return this
+        }, r.prototype.removeAllListeners = function(e) {
+            var t, r;
+            if (!this._events) return this;
+            if (!this._events.removeListener) return 0 === arguments.length ? this._events = {} : this._events[e] && delete this._events[e], this;
+            if (0 === arguments.length) {
+                for (t in this._events) "removeListener" !== t && this.removeAllListeners(t);
+                return this.removeAllListeners("removeListener"), this._events = {}, this
+            }
+            if (s(r = this._events[e])) this.removeListener(e, r);
+            else if (r)
+                for (; r.length;) this.removeListener(e, r[r.length - 1]);
+            return delete this._events[e], this
+        }, r.prototype.listeners = function(e) {
+            return this._events && this._events[e] ? s(this._events[e]) ? [this._events[e]] : this._events[e].slice() : []
+        }, r.prototype.listenerCount = function(e) {
+            if (this._events) {
+                var t = this._events[e];
+                if (s(t)) return 1;
+                if (t) return t.length
+            }
+            return 0
+        }, r.listenerCount = function(e, t) {
+            return e.listenerCount(t)
+        }
+    },
+    37: function(e, t, r) {
+        var s = r(38),
+            n = r(41),
+            i = r(42),
+            o = r(43);
+        async function a(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
-        function a(e) {
+        function h(e) {
             console.log("setup backend"), n({
                 setting: e
             });
-            var t = new s({
+            var t = new o;
+            t.install(), t.on("data", e => {
+                window.postMessage({
+                    source: "geetest_data",
+                    data: e
+                }, "*")
+            });
+            var r = new s({
                 setting: e
             });
-            t.install(), t.on("got", () => {
+            r.install(), r.on("got", () => {
                 !async function() {
                     if (!document.title_src)
                         for (document.title_src = document.title, document.title = "[新箱子验证] " + document.title;;) {
@@ -65,34 +180,39 @@
                                 document.title = document.title_src, delete document.title_src;
                                 break
                             }
-                            await o(1e3)
+                            await a(1e3)
                         }
                 }(), window.postMessage({
                     source: "treasure_got"
                 }, "*")
-            }), t.on("got_res", e => {
+            }), r.on("got_res", e => {
                 window.postMessage({
                     source: "treasure_got_res",
                     data: e
                 }, "*")
-            }), t.on("miss", () => {
-                e.ghoulEnabled && e.autoClose && t.noTs && window.close()
-            }), t.on("barrage", e => {}), new i({
+            }), r.on("miss", () => {
+                e.ghoulEnabled && e.autoClose && r.noTs && window.close()
+            }), r.on("barrage", e => {}), r.on("dy_login", e => {
+                window.postMessage({
+                    source: "dy_login",
+                    data: e
+                }, "*")
+            }), new i({
                 setting: e
-            }).install(), window.addEventListener("message", r => {
-                r.source === window && r.data && "sync" === r.data.source && e.autoClose && t.noTs && window.close()
+            }).install(), window.addEventListener("message", t => {
+                t.source === window && t.data && "sync" === t.data.source && e.autoClose && r.noTs && window.close()
             })
         }
         window.postMessage({
             source: "backend_installed"
         }, "*"), window.addEventListener("message", e => {
-            e.source === window && e.data && "setting" === e.data.source && a(e.data.data)
+            e.source === window && e.data && "setting" === e.data.source && h(e.data.data)
         })
     },
-    29: function(e, t, r) {
+    38: function(e, t, r) {
         var {
             EventEmitter: s
-        } = r(30), n = r(31), i = r(32);
+        } = r(13), n = r(39), i = r(40);
         async function o(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -106,7 +226,7 @@
                     this.noTs = !1, this.state = "WAITING";
                     var {
                         delayRange: t
-                    } = this.setting, r = Math.max(t[1] - t[0], 0) * Math.random() + t[0], s = this.pendingBox.poll(), n = this.setting.rocketOnly ? 102 : 0, i = s.treasureType >= n ? Math.max(1e3 * s.surplusTime - Date.now() + r + 5, 0) : 1;
+                    } = this.setting, r = Math.max(t[1] - t[0], 0) * Math.random() + t[0], s = this.pendingBox.poll(), n = this.setting.rocketOnly ? 102 : 0, i = s.treasureType >= n ? Math.max(1e3 * s.surplusTime - Date.now() + (this.setting.timeDelta || 0) + r + 5, 0) : 1;
                     setTimeout(() => this.handleTimeupBox(s), i)
                 }
                 this.pendingBox.isEmpty() && "IDLE" === this.state && (this.noTs = !0)
@@ -168,6 +288,13 @@
                 }
                 return e
             }
+            dyLogin() {
+                try {
+                    this.emit("dy_login", {
+                        dyUid: window.socketProxy.info.user.userName
+                    })
+                } catch (e) {}
+            }
             install() {
                 var e = this;
                 i.hook([{
@@ -175,6 +302,7 @@
                     path: ["a", "prototype", ["mapping", "dataMap", "showDrawTips", "drawTreasure"]],
                     hooks: {
                         mapping(t, r, s) {
+                            e.dyLogin();
                             var n = t.call(this, r, s);
                             return e.setting.ghoulEnabled && (n.destroyTime -= n.delayTime, n.surplusTime -= n.delayTime, n.delayTime = 1), n
                         },
@@ -284,99 +412,7 @@
             }
         }
     },
-    30: function(e, t) {
-        function r() {
-            this._events = this._events || {}, this._maxListeners = this._maxListeners || void 0
-        }
-        function s(e) {
-            return "function" == typeof e
-        }
-        function n(e) {
-            return "object" == typeof e && null !== e
-        }
-        function i(e) {
-            return void 0 === e
-        }
-        e.exports = r, r.EventEmitter = r, r.prototype._events = void 0, r.prototype._maxListeners = void 0, r.defaultMaxListeners = 10, r.prototype.setMaxListeners = function(e) {
-            if (! function(e) {
-                    return "number" == typeof e
-                }(e) || e < 0 || isNaN(e)) throw TypeError("n must be a positive number");
-            return this._maxListeners = e, this
-        }, r.prototype.emit = function(e) {
-            var t, r, o, a, l, c;
-            if (this._events || (this._events = {}), "error" === e && (!this._events.error || n(this._events.error) && !this._events.error.length)) {
-                if ((t = arguments[1]) instanceof Error) throw t;
-                var h = new Error('Uncaught, unspecified "error" event. (' + t + ")");
-                throw h.context = t, h
-            }
-            if (i(r = this._events[e])) return !1;
-            if (s(r)) switch (arguments.length) {
-                case 1:
-                    r.call(this);
-                    break;
-                case 2:
-                    r.call(this, arguments[1]);
-                    break;
-                case 3:
-                    r.call(this, arguments[1], arguments[2]);
-                    break;
-                default:
-                    a = Array.prototype.slice.call(arguments, 1), r.apply(this, a)
-            } else if (n(r))
-                for (a = Array.prototype.slice.call(arguments, 1), o = (c = r.slice()).length, l = 0; l < o; l++) c[l].apply(this, a);
-            return !0
-        }, r.prototype.addListener = function(e, t) {
-            var o;
-            if (!s(t)) throw TypeError("listener must be a function");
-            return this._events || (this._events = {}), this._events.newListener && this.emit("newListener", e, s(t.listener) ? t.listener : t), this._events[e] ? n(this._events[e]) ? this._events[e].push(t) : this._events[e] = [this._events[e], t] : this._events[e] = t, n(this._events[e]) && !this._events[e].warned && (o = i(this._maxListeners) ? r.defaultMaxListeners : this._maxListeners) && o > 0 && this._events[e].length > o && (this._events[e].warned = !0, console.error("(node) warning: possible EventEmitter memory leak detected. %d listeners added. Use emitter.setMaxListeners() to increase limit.", this._events[e].length), "function" == typeof console.trace && console.trace()), this
-        }, r.prototype.on = r.prototype.addListener, r.prototype.once = function(e, t) {
-            if (!s(t)) throw TypeError("listener must be a function");
-            var r = !1;
-            function n() {
-                this.removeListener(e, n), r || (r = !0, t.apply(this, arguments))
-            }
-            return n.listener = t, this.on(e, n), this
-        }, r.prototype.removeListener = function(e, t) {
-            var r, i, o, a;
-            if (!s(t)) throw TypeError("listener must be a function");
-            if (!this._events || !this._events[e]) return this;
-            if (o = (r = this._events[e]).length, i = -1, r === t || s(r.listener) && r.listener === t) delete this._events[e], this._events.removeListener && this.emit("removeListener", e, t);
-            else if (n(r)) {
-                for (a = o; a-- > 0;)
-                    if (r[a] === t || r[a].listener && r[a].listener === t) {
-                        i = a;
-                        break
-                    }
-                if (i < 0) return this;
-                1 === r.length ? (r.length = 0, delete this._events[e]) : r.splice(i, 1), this._events.removeListener && this.emit("removeListener", e, t)
-            }
-            return this
-        }, r.prototype.removeAllListeners = function(e) {
-            var t, r;
-            if (!this._events) return this;
-            if (!this._events.removeListener) return 0 === arguments.length ? this._events = {} : this._events[e] && delete this._events[e], this;
-            if (0 === arguments.length) {
-                for (t in this._events) "removeListener" !== t && this.removeAllListeners(t);
-                return this.removeAllListeners("removeListener"), this._events = {}, this
-            }
-            if (s(r = this._events[e])) this.removeListener(e, r);
-            else if (r)
-                for (; r.length;) this.removeListener(e, r[r.length - 1]);
-            return delete this._events[e], this
-        }, r.prototype.listeners = function(e) {
-            return this._events && this._events[e] ? s(this._events[e]) ? [this._events[e]] : this._events[e].slice() : []
-        }, r.prototype.listenerCount = function(e) {
-            if (this._events) {
-                var t = this._events[e];
-                if (s(t)) return 1;
-                if (t) return t.length
-            }
-            return 0
-        }, r.listenerCount = function(e, t) {
-            return e.listenerCount(t)
-        }
-    },
-    31: function(e, t, r) {
+    39: function(e, t, r) {
         "use strict";
         (function(e) {
             var t = function(e, t) {
@@ -453,9 +489,9 @@
                 for (n.add(0); o < e;) {
                     var a = n.poll();
                     i[o++] = this.array[a];
-                    var l = 1 + (a << 1),
-                        c = l + 1;
-                    l < this.size && n.add(l), c < this.size && n.add(c)
+                    var h = 1 + (a << 1),
+                        c = h + 1;
+                    h < this.size && n.add(h), c < this.size && n.add(c)
                 }
                 return i
             };
@@ -465,9 +501,9 @@
                 });
                 for (e.add(1), e.add(0), e.add(5), e.add(4), e.add(3); !e.isEmpty();) console.log(e.poll())
             }(), e.exports = s
-        }).call(this, r(8)(e))
+        }).call(this, r(10)(e))
     },
-    32: function(e, t) {
+    40: function(e, t) {
         async function r(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
@@ -504,10 +540,10 @@
                                             }
                                         }), Object.defineProperties(t.prototype, a), n.forEach(e => t.prototype[e] = o[e])
                                     } else {
-                                        var l = r.length,
+                                        var h = r.length,
                                             c = t[n];
                                         Object.defineProperty(t, n, {
-                                            get: () => l > 0 ? t[`_${n}`] : function(...e) {
+                                            get: () => h > 0 ? t[`_${n}`] : function(...e) {
                                                 return s[n].call(this, t[`_${n}`], ...e)
                                             },
                                             set: i => {
@@ -542,7 +578,7 @@
             }
         }
     },
-    33: function(e, t) {
+    41: function(e, t) {
         e.exports = (e => {
             var t = e.setting,
                 {
@@ -607,84 +643,94 @@
             })
         })
     },
-    34: function(e, t) {
+    42: function(e, t) {
         async function r(e) {
             return new Promise(t => setTimeout(() => t(), e))
         }
         e.exports = class {
             constructor(e) {
                 var t = e.setting;
-                this.setting = t, this.state = "INIT"
+                this.setting = t, this.aid = null, this.state = "IDLE"
             }
-            findAnswer() {
+            async waitForSocketStream() {
+                for (;;) {
+                    if (window.socketProxy && window.socketProxy.socketStream) return;
+                    await r(2e3)
+                }
+            }
+            getAnswerFromBarrage() {
                 var e = {
                     A: 0,
                     B: 0,
                     C: 0
                 };
-                return document.getElementsByClassName("Barrage-main")[0].innerText.toUpperCase().replace(/[^ABC]/g, "").split("").map(t => ++e[t]), Object.entries(e).sort((e, t) => t[1] - e[1])[0][0]
+                return document.getElementsByClassName("Barrage-main")[0].innerText.toUpperCase().replace(/[^ABC]/g, "").split("").map(t => ++e[t]), Object.entries(e).sort((e, t) => t[1] - e[1])[0][0].charCodeAt(0) - "A".charCodeAt(0)
             }
-            async bfMainLoop(e) {
-                for (console.log("auto_answer[bf] started");;) {
-                    var t = document.querySelectorAll("div[class^='answerPreview']"),
-                        s = document.querySelectorAll("div[class^='answerProblem'] ul li");
-                    if (t && t.length > 0 && s && s.length > 0) {
-                        var n = e || this.findAnswer();
-                        console.log("answer: ", n);
-                        for (var i = 0; i < 20; ++i) {
-                            try {
-                                "A" === n ? s[0].click() : "B" === n ? s[1].click() : "C" === n && s[2].click()
-                            } catch (e) {}
-                            await r(20)
-                        }
-                        await r(1e3), setTimeout(() => window.location.reload(), 108e4)
-                    }
-                    await r(100)
-                }
+            async answerProblem(e) {
+                var {
+                    room: t,
+                    user: r
+                } = window.socketProxy.info, s = {
+                    type: "compqaq",
+                    acid: "act_comdt",
+                    qid: e,
+                    aid: this.aid,
+                    rid: t.roomId,
+                    uid: r.userName
+                };
+                window.socketProxy.sendMessage(s), setTimeout(() => this.state = "IDLE", 5e3)
             }
-            async smartMainLoop(e) {
-                for (console.log("auto_answer[smart] started"), this.state = "IDLE";;) {
-                    if (console.log("state:", this.state), "IDLE" === this.state) {
-                        var t = document.querySelectorAll("div[class^='answerPreview']");
-                        t && t.length > 0 && (console.log("prepare to answer the problem"), this.state = "READY")
-                    } else if ("READY" === this.state) {
-                        var s = document.querySelectorAll("div[class^='answerProblem'] ul li");
-                        if (s && s.length > 0) {
-                            var n = e || this.findAnswer();
-                            console.log("answer: ", n);
-                            for (var i = 0; i < 20; ++i) {
-                                try {
-                                    "A" === n ? s[0].click() : "B" === n ? s[1].click() : "C" === n && s[2].click()
-                                } catch (e) {}
-                                await r(20)
-                            }
-                            this.state = "IDLE", setTimeout(() => window.location.reload(), 108e4)
-                        }
-                    }
-                    await r("IDLE" === this.state ? 5e3 : 50)
-                }
+            async getAnswer(e) {
+                this.state = "WORK", await r(1e3 * parseInt(.8 * e, 10)), this.aid = this.getAnswerFromBarrage()
             }
-            install() {
+            problemHandler(e) {
+                var {
+                    res: t,
+                    qid: r,
+                    cd: s
+                } = e;
+                0 === parseInt(t, 10) && r ? this.answerProblem(r) : this.getAnswer(parseInt(s, 10))
+            }
+            autoRefresh() {
+                var e = 1e3 * parseInt(this.setting.autoRefreshFreq, 10);
+                e && setTimeout(() => "IDLE" === this.state && window.location.reload(), e)
+            }
+            async install() {
                 var {
                     setting: e
                 } = this;
-                e.autoAnswerEnabled && ("smart" === e.autoAnswerMode ? this.smartMainLoop() : this.bfMainLoop())
+                e.autoAnswerEnabled && (await this.waitForSocketStream(), window.socketProxy.socketStream.subscribe("compqs", this.problemHandler.bind(this)), this.autoRefresh())
             }
         }
     },
-    8: function(e, t) {
-        e.exports = function(e) {
-            return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children || (e.children = []), Object.defineProperty(e, "loaded", {
-                enumerable: !0,
-                get: function() {
-                    return e.l
-                }
-            }), Object.defineProperty(e, "id", {
-                enumerable: !0,
-                get: function() {
-                    return e.i
-                }
-            }), e.webpackPolyfill = 1), e
+    43: function(e, t, r) {
+        var {
+            EventEmitter: s
+        } = r(13);
+        e.exports = class extends s {
+            constructor() {
+                super(), this.src = "", this.pos = []
+            }
+            onmousedown(e) {
+                var {
+                    target: t,
+                    offsetX: r,
+                    offsetY: s
+                } = e, {
+                    className: n,
+                    currentSrc: i
+                } = t;
+                "geetest_item_img" === n ? (0 === this.pos.length && (this.src = i), this.src !== i && (this.src = i, this.pos = []), this.pos.push({
+                    x: r,
+                    y: s
+                })) : "geetest_commit_tip" === n && this.pos.length > 0 && this.emit("data", {
+                    pos: this.pos,
+                    src: this.src
+                })
+            }
+            install() {
+                window.onmousedown = this.onmousedown.bind(this)
+            }
         }
     }
 });
