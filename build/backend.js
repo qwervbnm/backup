@@ -203,7 +203,7 @@
                     source: "dy_login",
                     data: e
                 }, "*")
-            }), "pro" === e.ghoulMode && e.ghoulEnabled && "https://www.douyu.com/99999" === document.location.href && window.postMessage({
+            }), "pro" === e.ghoulMode && e.ghoulEnabled && document.location.href.startsWith("https://www.douyu.com/99999") && window.postMessage({
                 source: "pro_tab"
             }, "*"), window.addEventListener("message", t => {
                 t.source === window && t.data && "sync" === t.data.source ? "normal" === e.ghoulMode && e.autoClose && h.noTs && window.close() : t.source === window && t.data && "tsbox" === t.data.source && "pro" === e.ghoulMode && e.ghoulEnabled && h.handlePendingBoxes(t.data.data)
@@ -257,8 +257,10 @@
             }
             handleTimeupBox(e) {
                 if ("WAITING" === this.state) {
-                    var t = this.setting.rocketOnly ? 102 : 0;
-                    e.treasureType >= t ? (console.log("picking", e), PlayerAsideApp.container.registry.store.dispatch({
+                    var t = parseInt((Date.now() + this.setting.timeDelta) / 1e3, 10);
+                    if (e.surplusTime + 1 < t) return this.state = "IDLE", void this.handlePendingBoxes();
+                    var s = this.setting.rocketOnly ? 102 : 0;
+                    e.treasureType >= s ? (console.log("picking", e), PlayerAsideApp.container.registry.store.dispatch({
                         type: "DRAW_TREASURE",
                         payload: {
                             data: e,
@@ -344,7 +346,7 @@
                             return e.setting.ghoulEnabled && e.handlePendingBoxes(n), n
                         },
                         showDrawTips(t, s) {
-                            return "WAITING" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes(), e.emit("miss")) : "GEE_SHOW" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes()) : 0 === parseInt(s.code, 10) && (e.state = "IDLE", e.handlePendingBoxes(), e.emit("got_res", s)), t.call(this, s)
+                            return "WAITING" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes(), e.emit("miss")) : "GEE_SHOW" === e.state && 0 !== parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes()) : 0 === parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes(), e.emit("got_res", s)) : -1 === parseInt(s.code, 10) ? (e.state = "IDLE", e.handlePendingBoxes()) : console.log("missing case", s), t.call(this, s)
                         },
                         drawTreasure(t, s, r) {
                             return "GEE_SHOW" === e.state && "check" === r && (e.state = "GEE_CHECKING"), t.call(this, s, r)
