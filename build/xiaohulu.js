@@ -41,9 +41,9 @@
         return r.d(t, "a", t), t
     }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 37)
+    }, r.p = "", r(r.s = 165)
 }({
-    37: function(e, t) {
+    165: function(e, t) {
         var r = chrome.runtime.connect({
             name: "xiaohulu"
         });
