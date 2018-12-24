@@ -643,7 +643,7 @@
     e.exports = {
         name: "99999摸金助手",
         short_name: "99999Helper",
-        version: "0.5.0",
+        version: "0.5.1",
         description: "99999摸金助手",
         manifest_version: 2,
         icons: {
