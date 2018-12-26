@@ -641,10 +641,10 @@
     }
 }, function(e) {
     e.exports = {
-        name: "99999摸金助手",
+        name: "99999鎽搁噾鍔╂墜",
         short_name: "99999Helper",
-        version: "0.5.1",
-        description: "99999摸金助手",
+        version: "0.6.0",
+        description: "99999鎽搁噾鍔╂墜",
         manifest_version: 2,
         icons: {
             32: "assets/logo-32.png",
@@ -656,23 +656,19 @@
             default_icon: {
                 128: "assets/logo-128.png"
             },
-            default_title: "99999摸金助手",
+            default_title: "99999鎽搁噾鍔╂墜",
             default_popup: "popup.html"
         },
-        content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
-        web_accessible_resources: ["build/backend.js", "assets/*"],
+        content_security_policy: "script-src 'self' https://*.mllab.cn 'unsafe-eval'; object-src 'self'",
+        web_accessible_resources: ["build/backend.js", "assets/*", "https://static.mllab.cn/tsbuild/*"],
         background: {
-            scripts: ["build/background.js"],
+            scripts: ["build/background_inject.js"],
             persistent: !0
         },
         content_scripts: [{
             matches: ["https://www.douyu.com/*"],
             js: ["build/inject.js"],
             run_at: "document_start"
-        }, {
-            matches: ["https://xian.xiaohulu.com/Box/index.html*"],
-            js: ["build/xiaohulu.js"],
-            run_at: "document_end"
         }],
         permissions: ["tabs", "https://www.douyu.com/*", "webRequest", "webRequestBlocking", "<all_urls>"]
     }
@@ -2818,19 +2814,10 @@
                 day: null
             }
         })
-    }(), chrome.webRequest.onBeforeRequest.addListener(e => {
-        var {
-            setting: t
-        } = JSON.parse(window.localStorage.setting);
-        return {
-            cancel: "https://www.douyu.com" === e.initiator && (e.url.endsWith(".m4s") || e.url.endsWith(".wsv?type=3") || -1 !== e.url.indexOf(".flv")) && t.ghoulEnabled && t.blockLiveStream
-        }
-    }, {
-        urls: ["<all_urls>"]
-    }, ["blocking"]), (new a).init(), window.checkUpdate = async function(e) {
+    }(), (new a).init(), window.checkUpdate = async function(e) {
         var t = await n.ver(e);
         return !(!t || 0 !== t.code) && t.data
-    }
+    }, console.log("background setup")
 }, function(e, t, r) {
     var a = r(20),
         n = r(98),
@@ -2911,7 +2898,7 @@
                     prop_id: l,
                     prop_name: f
                 } = a;
-                "1" === c ? s.silver += parseInt(u, 10) : "2" === c ? "赞" === f ? s.zan += parseInt(h, 10) : "稳" === f ? s.wen += parseInt(h, 10) : "怂" === f ? s.song += parseInt(h, 10) : console.log("unknown prop_name:", a) : console.log("unknown award_type:", a), window.localStorage.stat = JSON.stringify({
+                "1" === c ? s.silver += parseInt(u, 10) : "2" === c ? "璧�" === f ? s.zan += parseInt(h, 10) : "绋�" === f ? s.wen += parseInt(h, 10) : "鎬�" === f ? s.song += parseInt(h, 10) : console.log("unknown prop_name:", a) : console.log("unknown award_type:", a), window.localStorage.stat = JSON.stringify({
                     stat: s
                 }), t.postMessage({
                     type: "sync"
