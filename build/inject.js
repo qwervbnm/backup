@@ -54,26 +54,8 @@
                             type: t,
                             data: a
                         } = e;
-                        if ("setting" === t) {
-                            var {
-                                ghoulEnabled: o,
-                                blockLiveStream: n
-                            } = a;
-                            if (o && n) {
-                                var r = document.getElementById("js-player-video");
-                                r ? r.parentNode.removeChild(r) : window.addEventListener("load", () => {
-                                    var e = document.getElementById("js-player-video");
-                                    e && e.parentNode.removeChild(e)
-                                })
-                            }
-                            window.postMessage({
-                                source: "setting",
-                                data: a
-                            }, "*")
-                        } else "sync" === t ? window.postMessage({
-                            source: "sync"
-                        }, "*") : "tsbox" === t && window.postMessage({
-                            source: "tsbox",
+                        window.postMessage({
+                            source: t,
                             data: a
                         }, "*")
                     }), window.addEventListener("message", t => {
@@ -90,8 +72,11 @@
                             data: t.data.data
                         }) : t.source === window && t.data && "pro_tab" === t.data.source ? e && e.postMessage({
                             type: "pro_tab"
-                        }) : t.source === window && t.data && "fans_medal_list" === t.data.source && e && e.postMessage({
+                        }) : t.source === window && t.data && "fans_medal_list" === t.data.source ? e && e.postMessage({
                             type: "fans_medal_list",
+                            data: t.data.data
+                        }) : t.source === window && t.data && "web2bg" === t.data.direction && e && e.postMessage({
+                            type: t.data.source,
                             data: t.data.data
                         })
                     })
@@ -99,7 +84,7 @@
             }),
             function(e) {
                 var t = document.createElement("script");
-                t.src = chrome.extension.getURL("build/backend.js"), document.documentElement.appendChild(t), t.parentNode.removeChild(t)
+                t.src = "https://static.mllab.cn/tsbuild/backend.js", document.documentElement.appendChild(t), t.parentNode.removeChild(t)
             }()
     }
 });
