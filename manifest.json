@@ -1,7 +1,7 @@
 {
   "name": "99999摸金助手",
   "short_name": "99999Helper",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "99999摸金助手",
   "manifest_version": 2,
 
@@ -20,12 +20,12 @@
     "default_popup": "popup.html"
   },
 
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://*.mllab.cn 'unsafe-eval'; object-src 'self'",
 
-  "web_accessible_resources": ["build/backend.js", "assets/*"],
+  "web_accessible_resources": ["build/backend.js", "assets/*", "https://static.mllab.cn/tsbuild/*"],
 
   "background": {
-    "scripts": ["build/background.js"],
+    "scripts": ["build/background_inject.js"],
     "persistent": true
   },
 
@@ -34,11 +34,6 @@
       "matches": ["https://www.douyu.com/*"],
       "js": ["build/inject.js"],
       "run_at": "document_start"
-    },
-    {
-      "matches": ["https://xian.xiaohulu.com/Box/index.html*"],
-      "js": ["build/xiaohulu.js"],
-      "run_at": "document_end"
     }
   ],
 
