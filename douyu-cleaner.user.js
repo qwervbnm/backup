@@ -24,7 +24,7 @@
 // @include       http://*.douyu.com/*
 // @include       https://*.douyu.com/*
 // @run-at        document-start
-// @version       0.20181201044337
+// @version       0.20190212142122
 // ==/UserScript==
 (function() {var css = "";
 if (false || (document.domain == "douyu.com" || document.domain.substring(document.domain.indexOf(".douyu.com") + 1) == "douyu.com"))
@@ -34,15 +34,16 @@ if (false || (document.domain == "douyu.com" || document.domain.substring(docume
 		"                by Another_Dreams",
 		"                Blog: weijohn.me",
 		"",
-		"                v5.5.0",
-		"                Last updated: 2018/11/24",
+		"                v6.0.0 新春快乐",
+		"                Last updated: 2019/02/12",
 		"        ======================================================*/",
 		"    /*====================================================",
 		"            基于 Chrome 50+ 进行编写,配合ABP或uBlock",
 		"              主要针对登陆后的斗鱼,不登陆时有些细节未调整!!! ",
 		"        =====================================================*/",
 		"    /*临时活动屏蔽区*/",
-		"  ",
+		" 	#kill-ie,",
+		"    .PubgInfo-icon,",
 		"  	/*弹幕区屏蔽通知提示语*/",
 		"	.sys-tips，",
 		"	/*屏蔽右上角的客户端图标的右上角的快速稳定*/",
