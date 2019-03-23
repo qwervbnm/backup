@@ -24,7 +24,7 @@
 // @include       http://*.douyu.com/*
 // @include       https://*.douyu.com/*
 // @run-at        document-start
-// @version       0.20190212142122
+// @version       0.20190322112648
 // ==/UserScript==
 (function() {var css = "";
 if (false || (document.domain == "douyu.com" || document.domain.substring(document.domain.indexOf(".douyu.com") + 1) == "douyu.com"))
@@ -34,8 +34,8 @@ if (false || (document.domain == "douyu.com" || document.domain.substring(docume
 		"                by Another_Dreams",
 		"                Blog: weijohn.me",
 		"",
-		"                v6.0.0 新春快乐",
-		"                Last updated: 2019/02/12",
+		"                v6.0.1",
+		"                Last updated: 2019/03/22",
 		"        ======================================================*/",
 		"    /*====================================================",
 		"            基于 Chrome 50+ 进行编写,配合ABP或uBlock",
@@ -568,7 +568,7 @@ if (false || (document.domain == "douyu.com" || document.domain.substring(docume
 		"    display: none !important;",
 		"}",
 		".layout-Player-barrage {",
-		"    top: 0px !important;",
+		"    top: 38px !important;",
 		"}",
 		"    /*聊天弹幕*/",
 		"    .PlayerCaseSub-Main .chat-cont {",
